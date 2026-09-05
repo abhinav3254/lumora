@@ -16,7 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lumora">
 
-        <!-- Splash — this is now the entry point -->
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -26,12 +25,10 @@
             </intent-filter>
         </activity>
 
-        <!-- Main screen — no longer the launcher -->
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
+        <activity android:name=".MainActivity" android:exported="false" />
 
-        <!-- Settings screen shown in live wallpaper picker -->
+        <activity android:name=".SettingsActivity" android:exported="false" />
+
         <activity
             android:name=".WallpaperSettingsActivity"
             android:exported="true"
@@ -41,7 +38,6 @@
             </intent-filter>
         </activity>
 
-        <!-- Live Wallpaper Service -->
         <service
             android:name=".SlideshowWallpaperService"
             android:exported="true"

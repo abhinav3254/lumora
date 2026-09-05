@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#161311"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -144,6 +145,13 @@
                     android:layout_marginEnd="5dp"
                     android:background="@drawable/splash_tile_bg">
 
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/dog"
+                        android:scaleType="centerCrop"
+                        />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -163,6 +171,13 @@
                     android:layout_weight="1"
                     android:layout_marginEnd="5dp"
                     android:background="@drawable/splash_tile_active_bg">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/partner"
+                        android:scaleType="centerCrop"
+                        />
 
                     <!-- Active dot -->
                     <View
@@ -189,6 +204,13 @@
                     android:layout_height="110dp"
                     android:layout_weight="1"
                     android:background="@drawable/splash_tile_bg">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/cat"
+                        android:scaleType="centerCrop"
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
