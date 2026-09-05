@@ -31,13 +31,12 @@ public class SlideshowWallpaperService extends WallpaperService {
 
         private final Handler handler = new Handler(Looper.getMainLooper());
         private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+        private final List<String> imageUriStrings = new ArrayList<>();
 
-        private List<String> imageUriStrings = new ArrayList<>();
         private Bitmap currentBitmap = null;
         private int currentIndex = 0;
         private boolean visible = false;
-
-        private static final long INTERVAL_MS = 5000; // 5 seconds
+        private int surfaceW = 0, surfaceH = 0;
 
         private final Runnable slideshowRunnable = new Runnable() {
             @Override
@@ -48,15 +47,14 @@ public class SlideshowWallpaperService extends WallpaperService {
                     drawFrame();
                 }
                 if (visible) {
-                    handler.postDelayed(this, INTERVAL_MS);
+                    handler.postDelayed(this, getIntervalMs());
                 }
             }
         };
 
-        @Override
-        public void onCreate(SurfaceHolder surfaceHolder) {
-            super.onCreate(surfaceHolder);
-            loadUrisFromPrefs();
+        private long getIntervalMs() {
+            SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+            return prefs.getLong(MainActivity.KEY_INTERVAL_MS, 5000);
         }
 
         @Override
@@ -64,11 +62,12 @@ public class SlideshowWallpaperService extends WallpaperService {
             this.visible = visible;
             if (visible) {
                 loadUrisFromPrefs();
-                if (!imageUriStrings.isEmpty() && currentBitmap == null) {
+                if (!imageUriStrings.isEmpty()) {
                     loadBitmapAt(currentIndex);
                 }
                 drawFrame();
-                handler.postDelayed(slideshowRunnable, INTERVAL_MS);
+                handler.removeCallbacks(slideshowRunnable);
+                handler.postDelayed(slideshowRunnable, getIntervalMs());
             } else {
                 handler.removeCallbacks(slideshowRunnable);
             }
@@ -77,7 +76,9 @@ public class SlideshowWallpaperService extends WallpaperService {
         @Override
         public void onSurfaceChanged(SurfaceHolder holder, int format, int width, int height) {
             super.onSurfaceChanged(holder, format, width, height);
-            // Reload bitmap scaled to new surface size
+            surfaceW = width;
+            surfaceH = height;
+            loadUrisFromPrefs();
             if (!imageUriStrings.isEmpty()) {
                 loadBitmapAt(currentIndex);
             }
@@ -89,16 +90,21 @@ public class SlideshowWallpaperService extends WallpaperService {
             super.onSurfaceDestroyed(holder);
             visible = false;
             handler.removeCallbacks(slideshowRunnable);
-            if (currentBitmap != null) {
-                currentBitmap.recycle();
-                currentBitmap = null;
-            }
+            recycleBitmap();
         }
 
         @Override
         public void onDestroy() {
             super.onDestroy();
             handler.removeCallbacks(slideshowRunnable);
+            recycleBitmap();
+        }
+
+        private void recycleBitmap() {
+            if (currentBitmap != null && !currentBitmap.isRecycled()) {
+                currentBitmap.recycle();
+                currentBitmap = null;
+            }
         }
 
         private void loadUrisFromPrefs() {
@@ -106,54 +112,41 @@ public class SlideshowWallpaperService extends WallpaperService {
             String raw = prefs.getString(KEY_IMAGE_URIS, "");
             imageUriStrings.clear();
             if (raw != null && !raw.isEmpty()) {
-                String[] parts = raw.split("\\|\\|\\|");
-                for (String p : parts) {
-                    if (!p.trim().isEmpty()) {
-                        imageUriStrings.add(p.trim());
-                    }
+                for (String p : raw.split("\\|\\|\\|")) {
+                    if (!p.trim().isEmpty()) imageUriStrings.add(p.trim());
                 }
             }
-            // Reset index if out of bounds
-            if (currentIndex >= imageUriStrings.size()) {
-                currentIndex = 0;
-            }
+            if (currentIndex >= imageUriStrings.size()) currentIndex = 0;
         }
 
         private void loadBitmapAt(int index) {
-            if (imageUriStrings.isEmpty()) return;
-
-            SurfaceHolder holder = getSurfaceHolder();
-            int targetW = holder.getSurfaceFrame().width();
-            int targetH = holder.getSurfaceFrame().height();
-            if (targetW == 0 || targetH == 0) return;
-
+            if (imageUriStrings.isEmpty() || surfaceW == 0 || surfaceH == 0) return;
             try {
                 Uri uri = Uri.parse(imageUriStrings.get(index));
-                InputStream is = getContentResolver().openInputStream(uri);
-                if (is == null) return;
 
-                // First pass: just get dimensions
+                // Pass 1: get dimensions
                 BitmapFactory.Options opts = new BitmapFactory.Options();
                 opts.inJustDecodeBounds = true;
+                InputStream is = getContentResolver().openInputStream(uri);
+                if (is == null) return;
                 BitmapFactory.decodeStream(is, null, opts);
                 is.close();
 
-                // Calculate sample size to avoid OOM
-                opts.inSampleSize = calculateInSampleSize(opts, targetW, targetH);
+                opts.inSampleSize = calculateInSampleSize(opts, surfaceW, surfaceH);
                 opts.inJustDecodeBounds = false;
                 opts.inPreferredConfig = Bitmap.Config.ARGB_8888;
 
+                // Pass 2: decode
                 is = getContentResolver().openInputStream(uri);
+                if (is == null) return;
                 Bitmap raw = BitmapFactory.decodeStream(is, null, opts);
                 is.close();
 
                 if (raw == null) return;
-
-                // Scale to fill screen
-                Bitmap scaled = scaleBitmapToFill(raw, targetW, targetH);
+                Bitmap scaled = scaleBitmapToFill(raw, surfaceW, surfaceH);
                 if (scaled != raw) raw.recycle();
 
-                if (currentBitmap != null) currentBitmap.recycle();
+                recycleBitmap();
                 currentBitmap = scaled;
 
             } catch (Exception e) {
@@ -164,7 +157,6 @@ public class SlideshowWallpaperService extends WallpaperService {
         private Bitmap scaleBitmapToFill(Bitmap src, int targetW, int targetH) {
             float srcRatio = (float) src.getWidth() / src.getHeight();
             float dstRatio = (float) targetW / targetH;
-
             int scaledW, scaledH;
             if (srcRatio > dstRatio) {
                 scaledH = targetH;
@@ -173,27 +165,23 @@ public class SlideshowWallpaperService extends WallpaperService {
                 scaledW = targetW;
                 scaledH = (int) (targetW / srcRatio);
             }
-
             Bitmap scaled = Bitmap.createScaledBitmap(src, scaledW, scaledH, true);
-
-            // Center-crop to target size
-            int x = (scaledW - targetW) / 2;
-            int y = (scaledH - targetH) / 2;
-            return Bitmap.createBitmap(scaled, x, y, targetW, targetH);
+            int x = Math.max(0, (scaledW - targetW) / 2);
+            int y = Math.max(0, (scaledH - targetH) / 2);
+            int cropW = Math.min(targetW, scaled.getWidth() - x);
+            int cropH = Math.min(targetH, scaled.getHeight() - y);
+            Bitmap cropped = Bitmap.createBitmap(scaled, x, y, cropW, cropH);
+            if (cropped != scaled) scaled.recycle();
+            return cropped;
         }
 
-        private int calculateInSampleSize(BitmapFactory.Options options, int reqW, int reqH) {
-            int height = options.outHeight;
-            int width = options.outWidth;
-            int inSampleSize = 1;
-            if (height > reqH || width > reqW) {
-                int halfH = height / 2;
-                int halfW = width / 2;
-                while ((halfH / inSampleSize) >= reqH && (halfW / inSampleSize) >= reqW) {
-                    inSampleSize *= 2;
-                }
+        private int calculateInSampleSize(BitmapFactory.Options opts, int reqW, int reqH) {
+            int h = opts.outHeight, w = opts.outWidth, s = 1;
+            if (h > reqH || w > reqW) {
+                int hh = h / 2, hw = w / 2;
+                while ((hh / s) >= reqH && (hw / s) >= reqW) s *= 2;
             }
-            return inSampleSize;
+            return s;
         }
 
         private void drawFrame() {
@@ -202,17 +190,13 @@ public class SlideshowWallpaperService extends WallpaperService {
             try {
                 canvas = holder.lockCanvas();
                 if (canvas == null) return;
-
                 if (currentBitmap != null && !currentBitmap.isRecycled()) {
                     canvas.drawBitmap(currentBitmap, 0, 0, paint);
                 } else {
-                    // Fallback: draw solid dark background
                     canvas.drawColor(Color.BLACK);
                 }
             } finally {
-                if (canvas != null) {
-                    holder.unlockCanvasAndPost(canvas);
-                }
+                if (canvas != null) holder.unlockCanvasAndPost(canvas);
             }
         }
     }

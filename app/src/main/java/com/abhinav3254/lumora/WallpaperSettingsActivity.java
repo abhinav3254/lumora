@@ -7,8 +7,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,13 +22,10 @@ import java.util.List;
 
 public class WallpaperSettingsActivity extends AppCompatActivity {
 
-    private List<Uri> selectedUris = new ArrayList<>();
+    private final List<Uri> selectedUris = new ArrayList<>();
     private TextView tvCount;
-    private Button btnPick, btnSave;
-    private RecyclerView recyclerView;
     private SelectedPhotosAdapter adapter;
 
-    // Launcher to pick multiple images
     private final ActivityResultLauncher<Intent> pickImagesLauncher =
             registerForActivityResult(
                     new ActivityResultContracts.StartActivityForResult(),
@@ -38,43 +33,36 @@ public class WallpaperSettingsActivity extends AppCompatActivity {
                         if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                             selectedUris.clear();
                             Intent data = result.getData();
-
                             if (data.getClipData() != null) {
-                                // Multiple images selected
-                                int count = data.getClipData().getItemCount();
-                                int limit = Math.min(count, 20);
+                                int limit = Math.min(data.getClipData().getItemCount(), 20);
                                 for (int i = 0; i < limit; i++) {
                                     Uri uri = data.getClipData().getItemAt(i).getUri();
-                                    // Persist URI permission so wallpaper service can access it
-                                    getContentResolver().takePersistableUriPermission(
-                                            uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                                    try {
+                                        getContentResolver().takePersistableUriPermission(
+                                                uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                                    } catch (Exception ignored) {}
                                     selectedUris.add(uri);
                                 }
                             } else if (data.getData() != null) {
-                                // Single image selected
                                 Uri uri = data.getData();
-                                getContentResolver().takePersistableUriPermission(
-                                        uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                                try {
+                                    getContentResolver().takePersistableUriPermission(
+                                            uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                                } catch (Exception ignored) {}
                                 selectedUris.add(uri);
                             }
-
                             adapter.notifyDataSetChanged();
                             updateCount();
                         }
                     });
 
-    // Permission launcher
     private final ActivityResultLauncher<String> permissionLauncher =
             registerForActivityResult(
                     new ActivityResultContracts.RequestPermission(),
                     granted -> {
-                        if (granted) {
-                            openPhotoPicker();
-                        } else {
-                            Toast.makeText(this,
-                                    "Permission needed to access photos",
-                                    Toast.LENGTH_SHORT).show();
-                        }
+                        if (granted) openPhotoPicker();
+                        else Toast.makeText(this, "Permission needed to access photos",
+                                Toast.LENGTH_SHORT).show();
                     });
 
     @Override
@@ -83,20 +71,17 @@ public class WallpaperSettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_wallpaper_settings);
 
         tvCount = findViewById(R.id.tv_count);
-        btnPick = findViewById(R.id.btn_pick_photos);
-        btnSave = findViewById(R.id.btn_save);
-        recyclerView = findViewById(R.id.recycler_photos);
+        RecyclerView recyclerView = findViewById(R.id.recycler_photos);
 
         adapter = new SelectedPhotosAdapter(this, selectedUris);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerView.setAdapter(adapter);
 
-        // Load previously saved URIs
         loadSavedUris();
 
-        btnPick.setOnClickListener(v -> checkPermissionAndPick());
-
-        btnSave.setOnClickListener(v -> saveAndFinish());
+        findViewById(R.id.btn_back).setOnClickListener(v -> finish());
+        findViewById(R.id.btn_pick_photos).setOnClickListener(v -> checkPermissionAndPick());
+        findViewById(R.id.btn_save).setOnClickListener(v -> saveAndFinish());
     }
 
     private void checkPermissionAndPick() {
@@ -126,11 +111,8 @@ public class WallpaperSettingsActivity extends AppCompatActivity {
                 SlideshowWallpaperService.PREFS_NAME, MODE_PRIVATE);
         String raw = prefs.getString(SlideshowWallpaperService.KEY_IMAGE_URIS, "");
         if (raw != null && !raw.isEmpty()) {
-            String[] parts = raw.split("\\|\\|\\|");
-            for (String p : parts) {
-                if (!p.trim().isEmpty()) {
-                    selectedUris.add(Uri.parse(p.trim()));
-                }
+            for (String p : raw.split("\\|\\|\\|")) {
+                if (!p.trim().isEmpty()) selectedUris.add(Uri.parse(p.trim()));
             }
             adapter.notifyDataSetChanged();
             updateCount();
@@ -139,27 +121,26 @@ public class WallpaperSettingsActivity extends AppCompatActivity {
 
     private void saveAndFinish() {
         if (selectedUris.isEmpty()) {
-            Toast.makeText(this, "Please select at least 1 photo", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Select at least 1 photo", Toast.LENGTH_SHORT).show();
             return;
         }
-
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < selectedUris.size(); i++) {
             sb.append(selectedUris.get(i).toString());
-            if (i < selectedUris.size() - 1) {
+            if (i < selectedUris.size() - 1)
                 sb.append(SlideshowWallpaperService.URI_SEPARATOR);
-            }
         }
+        getSharedPreferences(SlideshowWallpaperService.PREFS_NAME, MODE_PRIVATE)
+                .edit()
+                .putString(SlideshowWallpaperService.KEY_IMAGE_URIS, sb.toString())
+                .apply();
 
-        SharedPreferences prefs = getSharedPreferences(
-                SlideshowWallpaperService.PREFS_NAME, MODE_PRIVATE);
-        prefs.edit().putString(SlideshowWallpaperService.KEY_IMAGE_URIS, sb.toString()).apply();
-
-        Toast.makeText(this, "Photos saved! Wallpaper will update shortly.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
         finish();
     }
 
     private void updateCount() {
-        tvCount.setText(selectedUris.size() + " photo(s) selected");
+        int n = selectedUris.size();
+        tvCount.setText(n + " photo" + (n == 1 ? "" : "s") + " selected");
     }
 }
