@@ -2,10 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- For Android 12 and below -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
-    <!-- For Android 13+ -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <application
@@ -18,15 +16,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lumora">
 
-        <!-- Main launcher screen -->
+        <!-- Splash — this is now the entry point -->
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Main screen — no longer the launcher -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
 
         <!-- Settings screen shown in live wallpaper picker -->
         <activity
