@@ -31,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_heading" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_pick_photos"
         android:layout_width="0dp"
         android:layout_height="48dp"
@@ -42,14 +42,14 @@
         android:text="Choose from Gallery"
         android:textColor="#FFFFFF"
         android:textSize="13sp"
-        android:strokeColor="#3D3D5C"
-        android:strokeWidth="1dp"
+        app:strokeColor="#3D3D5C"
+        app:strokeWidth="1dp"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         app:layout_constraintEnd_toStartOf="@id/btn_save"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_count" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_save"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
@@ -63,7 +63,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/btn_pick_photos" />
 
-    <!-- Photo grid preview -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_photos"
         android:layout_width="0dp"

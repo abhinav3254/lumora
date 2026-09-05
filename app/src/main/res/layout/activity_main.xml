@@ -9,7 +9,6 @@
     android:background="#0A0A0F"
     tools:context=".MainActivity">
 
-    <!-- App title -->
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
@@ -39,8 +38,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
-    <!-- Step 1: Pick Photos -->
-    <Button
+    <!-- Step 1: Pick Photos (outlined style — stroke uses app: namespace) -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_pick_photos"
         android:layout_width="0dp"
         android:layout_height="56dp"
@@ -52,8 +51,8 @@
         android:textColor="#FFFFFF"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:strokeColor="#3D3D5C"
-        android:strokeWidth="1dp"
+        app:strokeColor="#3D3D5C"
+        app:strokeWidth="1dp"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         app:layout_constraintBottom_toTopOf="@id/btn_set_wallpaper"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_subtitle" />
 
     <!-- Step 2: Set as Wallpaper -->
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_set_wallpaper"
         android:layout_width="0dp"
         android:layout_height="56dp"
@@ -79,7 +78,6 @@
         app:layout_constraintTop_toBottomOf="@id/btn_pick_photos"
         app:layout_constraintVertical_bias="0" />
 
-    <!-- Step hint -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
