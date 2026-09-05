@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
-</PreferenceScreen>
+<wallpaper xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/wallpaper_description"
+    android:label="Lumora"
+    android:settingsActivity="com.abhinav3254.lumora.WallpaperSettingsActivity"
+    android:thumbnail="@mipmap/ic_launcher" />
