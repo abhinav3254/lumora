@@ -1,379 +1,526 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#161311"
-    android:fitsSystemWindows="true"
-    android:tag="bg_base">
+    android:fitsSystemWindows="true">
 
-    <!-- Fixed Header -->
+    <!-- Main content -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
-        android:background="#161311"
-        android:tag="bg_base">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#161311">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="LUMORA"
-                android:textColor="#625d5a"
-                android:textSize="10sp"
-                android:letterSpacing="0.12"
-                android:textAllCaps="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Wallpapers"
-                android:textColor="#e9e1dd"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:letterSpacing="-0.01" />
-
-        </LinearLayout>
-
-        <FrameLayout
-            android:id="@+id/btn_settings"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:background="@drawable/home_avatar_bg"
-            android:visibility="gone"
-            >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="S"
-                android:textColor="#33302d"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-        </FrameLayout>
-
-    </LinearLayout>
-
-    <!-- Scrollable content -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:overScrollMode="never"
-        android:background="#161311"
-        android:tag="bg_base">
-
+        <!-- Header -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="64dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:paddingStart="24dp"
             android:paddingEnd="24dp"
-            android:paddingBottom="100dp">
+            android:background="#161311">
 
-            <!-- Status card -->
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/home_card_bg"
-                android:padding="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                android:tag="bg_card">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <View
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:background="@drawable/home_pulse_dot"
-                        android:layout_marginEnd="8dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="CYCLE ACTIVE"
-                        android:textColor="#e9e1dd"
-                        android:textSize="11sp"
-                        android:letterSpacing="0.1"
-                        android:textAllCaps="true"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_interval_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="6dp"
-                        android:text="· Every 5s"
-                        android:textColor="#625d5a"
-                        android:textSize="11sp"
-                        android:letterSpacing="0.06"
-                        android:textAllCaps="true" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tv_photo_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="No photos selected"
-                    android:textColor="#988f88"
-                    android:tag="text_muted"
-                    android:textSize="13sp" />
-
-            </LinearLayout>
-
-
-                        <!-- Deck header -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="10dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Active Deck"
-                    android:textColor="#e9e1dd"
-                    android:textSize="17sp"
-                    android:tag="text_primary"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/btn_add_more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="+ Add photos"
-                    android:textColor="#ccc5c1"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <!-- Photo grid -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_deck"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false" />
-
-            <!-- Empty state -->
-            <LinearLayout
-                android:id="@+id/empty_state"
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/home_empty_bg"
-                android:visibility="gone">
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No photos yet"
+                    android:text="LUMORA"
                     android:textColor="#625d5a"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.12"
+                    android:textAllCaps="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wallpapers"
+                    android:textColor="#e9e1dd"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/btn_settings"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/home_avatar_bg">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="S"
+                    android:textColor="#33302d"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Tap Add photos to get started"
-                    android:textColor="#4c4640"
-                    android:textSize="12sp" />
+            </FrameLayout>
 
-            </LinearLayout>
+        </LinearLayout>
 
-            <!-- Import section -->
+        <!-- Scrollable content -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:overScrollMode="never"
+            android:background="#161311">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/home_card_bg"
-                android:padding="16dp"
-                android:layout_marginTop="20dp"
-                android:tag="bg_card">
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:paddingBottom="100dp">
 
+                <!-- Status card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/home_card_bg"
+                    android:padding="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <View
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="@drawable/home_pulse_dot"
+                            android:layout_marginEnd="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CYCLE ACTIVE"
+                            android:textColor="#e9e1dd"
+                            android:textSize="11sp"
+                            android:letterSpacing="0.1"
+                            android:textAllCaps="true"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_interval_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:text="· Every 5s"
+                            android:textColor="#625d5a"
+                            android:textSize="11sp"
+                            android:letterSpacing="0.06"
+                            android:textAllCaps="true" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_photo_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="No photos selected"
+                        android:textColor="#988f88"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+                <!-- Deck header -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="top">
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
 
-                    <FrameLayout
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/home_icon_circle"
-                        android:layout_marginEnd="14dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="+"
-                            android:textColor="#ccc5c1"
-                            android:textSize="22sp"
-                            android:textStyle="bold" />
-
-                    </FrameLayout>
-
-                    <LinearLayout
+                    <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:text="Active Deck"
+                        android:textColor="#e9e1dd"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Select new photos"
-                            android:textColor="#e9e1dd"
-                            android:tag="text_primary"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:text="Import up to 20 images to assemble a new automated cycle collection."
-                            android:textColor="#625d5a"
-                            android:tag="text_muted"
-                            android:textSize="12sp"
-                            android:lineSpacingMultiplier="1.4" />
-
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/btn_add_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+ Add photos"
+                        android:textColor="#ccc5c1"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/btn_import"
+                <!-- Photo grid -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_deck"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false" />
+
+                <!-- Empty state -->
+                <LinearLayout
+                    android:id="@+id/empty_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:orientation="vertical"
                     android:gravity="center"
-                    android:text="IMPORT WALLPAPERS"
-                    android:textColor="#e9e1dd"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:letterSpacing="0.08"
-                    android:background="@drawable/home_import_btn_bg"
-                    android:layout_marginTop="14dp" />
+                    android:background="@drawable/home_empty_bg"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No photos yet"
+                        android:textColor="#625d5a"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Tap Add photos to get started"
+                        android:textColor="#4c4640"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <!-- Import section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/home_card_bg"
+                    android:padding="16dp"
+                    android:layout_marginTop="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="top">
+
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/home_icon_circle"
+                            android:layout_marginEnd="14dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="+"
+                                android:textColor="#ccc5c1"
+                                android:textSize="22sp"
+                                android:textStyle="bold" />
+
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Select new photos"
+                                android:textColor="#e9e1dd"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="Import up to 20 images to build your cycle deck."
+                                android:textColor="#625d5a"
+                                android:textSize="12sp"
+                                android:lineSpacingMultiplier="1.4" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/btn_import"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:gravity="center"
+                        android:text="IMPORT WALLPAPERS"
+                        android:textColor="#e9e1dd"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08"
+                        android:background="@drawable/home_import_btn_bg"
+                        android:layout_marginTop="14dp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+        </ScrollView>
 
-    </ScrollView>
-
-    <!-- Fixed bottom nav -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:orientation="horizontal"
-        android:background="@drawable/home_nav_bg"
-        android:tag="bg_nav"
-        android:weightSum="3">
-
+        <!-- Bottom nav -->
         <LinearLayout
-            android:id="@+id/nav_wallpapers"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:orientation="horizontal"
+            android:background="@drawable/home_nav_bg"
+            android:weightSum="3">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/wallpapers"
-                />
+            <LinearLayout
+                android:id="@+id/nav_wallpapers"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="WALLPAPERS"
-                android:textColor="#e9e1dd"
-                android:textSize="9sp"
-                android:letterSpacing="0.08"
-                android:textAllCaps="true"
-                android:layout_marginTop="2dp" />
+                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/wallpapers" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="WALLPAPERS" android:textColor="#e9e1dd" android:textSize="9sp" android:letterSpacing="0.08" android:textAllCaps="true" android:layout_marginTop="2dp" />
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/nav_set_wallpaper"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
+            <LinearLayout
+                android:id="@+id/nav_set_wallpaper"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/greater"
-                />
+                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/greater" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="APPLY" android:textColor="#625d5a" android:textSize="9sp" android:letterSpacing="0.08" android:textAllCaps="true" android:layout_marginTop="2dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="APPLY"
-                android:textColor="#625d5a"
-                android:textSize="9sp"
-                android:letterSpacing="0.08"
-                android:textAllCaps="true"
-                android:layout_marginTop="2dp" />
+            </LinearLayout>
 
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/nav_settings"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
 
-        <LinearLayout
-            android:id="@+id/nav_settings"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
+                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/settings" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SETTINGS" android:textColor="#625d5a" android:textSize="9sp" android:letterSpacing="0.08" android:textAllCaps="true" android:layout_marginTop="2dp" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/settings"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SETTINGS"
-                android:textColor="#625d5a"
-                android:textSize="9sp"
-                android:letterSpacing="0.08"
-                android:textAllCaps="true"
-                android:layout_marginTop="2dp" />
+            </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+    <!-- Bottom sheet — slides up when Apply is tapped -->
+    <LinearLayout
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/home_card_bg"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="32dp"
+        android:layout_gravity="bottom"
+        android:elevation="16dp"
+        android:translationY="1200dp">
+
+        <!-- Handle -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:background="@drawable/home_pulse_dot"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:alpha="0.3" />
+
+        <!-- Section label -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="14dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Transition"
+                android:textColor="#e9e1dd"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_sheet_transition_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fade · 500ms"
+                android:textColor="#625d5a"
+                android:textSize="12sp" />
+
+            <!-- Close handle -->
+            <TextView
+                android:id="@+id/btn_sheet_close"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:gravity="center"
+                android:text="✕"
+                android:textColor="#625d5a"
+                android:textSize="14sp"
+                android:layout_marginStart="12dp" />
+
+        </LinearLayout>
+
+        <!-- Chips -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:layout_marginBottom="14dp">
+
+            <TextView
+                android:id="@+id/sheet_chip_none"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginEnd="6dp"
+                android:text="None"
+                android:textSize="12sp"
+                android:textColor="#625d5a"
+                android:background="@drawable/settings_chip_inactive" />
+
+            <TextView
+                android:id="@+id/sheet_chip_fade"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginEnd="6dp"
+                android:text="Fade"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:background="@drawable/settings_chip_active" />
+
+            <TextView
+                android:id="@+id/sheet_chip_slide"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginEnd="6dp"
+                android:text="Slide"
+                android:textSize="12sp"
+                android:textColor="#625d5a"
+                android:background="@drawable/settings_chip_inactive" />
+
+            <TextView
+                android:id="@+id/sheet_chip_zoom"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Zoom"
+                android:textSize="12sp"
+                android:textColor="#625d5a"
+                android:background="@drawable/settings_chip_inactive" />
+
+        </LinearLayout>
+
+        <!-- Duration row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/home_empty_bg"
+            android:padding="12dp"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Duration"
+                android:textColor="#988f88"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/sheet_btn_minus"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:text="&#8722;"
+                android:textColor="#988f88"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/sheet_tv_duration"
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="500ms"
+                android:textColor="#e9e1dd"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/sheet_btn_plus"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:text="+"
+                android:textColor="#988f88"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <!-- Set wallpaper CTA -->
+        <TextView
+            android:id="@+id/sheet_btn_apply"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:gravity="center"
+            android:text="SET AS LIVE WALLPAPER"
+            android:textColor="#33302d"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.08"
+            android:background="@drawable/splash_btn_primary_bg" />
+
+    </LinearLayout>
+
+    <!-- Dim overlay -->
+    <View
+        android:id="@+id/sheet_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:alpha="0"
+        android:visibility="gone"
+        android:clickable="true" />
+
+</FrameLayout>

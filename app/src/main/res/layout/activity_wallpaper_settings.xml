@@ -119,6 +119,151 @@
         android:layout_height="1dp"
         android:background="#1e1b19" />
 
+
+    <!-- Transition selector card -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/home_card_bg"
+        android:padding="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Transition"
+                android:textColor="#e9e1dd"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_transition_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fade · 500ms"
+                android:textColor="#625d5a"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+        <!-- 4 chips -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:id="@+id/ws_chip_none"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginEnd="6dp"
+                android:text="None"
+                android:textSize="11sp"
+                android:textColor="#625d5a"
+                android:background="@drawable/settings_chip_inactive" />
+
+            <TextView
+                android:id="@+id/ws_chip_fade"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginEnd="6dp"
+                android:text="Fade"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:background="@drawable/settings_chip_active" />
+
+            <TextView
+                android:id="@+id/ws_chip_slide"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginEnd="6dp"
+                android:text="Slide"
+                android:textSize="11sp"
+                android:textColor="#625d5a"
+                android:background="@drawable/settings_chip_inactive" />
+
+            <TextView
+                android:id="@+id/ws_chip_zoom"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Zoom"
+                android:textSize="11sp"
+                android:textColor="#625d5a"
+                android:background="@drawable/settings_chip_inactive" />
+
+        </LinearLayout>
+
+        <!-- Duration stepper -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/home_empty_bg"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Duration"
+                android:textColor="#988f88"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/ws_btn_minus"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:text="&#8722;"
+                android:textColor="#988f88"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/ws_tv_duration"
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="500ms"
+                android:textColor="#e9e1dd"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/ws_btn_plus"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:text="+"
+                android:textColor="#988f88"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
     <!-- Photo grid -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_photos"
