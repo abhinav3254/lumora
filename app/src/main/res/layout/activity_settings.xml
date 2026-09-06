@@ -225,6 +225,176 @@
 
             </LinearLayout>
 
+
+            <!-- ── SECTION: Transition Effect ── -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Transition Effect"
+                    android:textColor="#e9e1dd"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ANIMATION"
+                    android:textColor="#625d5a"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.1"
+                    android:textAllCaps="true" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/home_card_bg"
+                android:padding="16dp"
+                android:layout_marginBottom="28dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:id="@+id/chip_transition_none"
+                        android:layout_width="0dp"
+                        android:layout_height="42dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginEnd="6dp"
+                        android:text="None"
+                        android:textSize="11sp"
+                        android:textColor="#625d5a"
+                        android:background="@drawable/settings_chip_inactive" />
+
+                    <TextView
+                        android:id="@+id/chip_transition_fade"
+                        android:layout_width="0dp"
+                        android:layout_height="42dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginEnd="6dp"
+                        android:text="Fade"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/settings_chip_active" />
+
+                    <TextView
+                        android:id="@+id/chip_transition_slide"
+                        android:layout_width="0dp"
+                        android:layout_height="42dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_marginEnd="6dp"
+                        android:text="Slide"
+                        android:textSize="11sp"
+                        android:textColor="#625d5a"
+                        android:background="@drawable/settings_chip_inactive" />
+
+                    <TextView
+                        android:id="@+id/chip_transition_zoom"
+                        android:layout_width="0dp"
+                        android:layout_height="42dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Zoom"
+                        android:textSize="11sp"
+                        android:textColor="#625d5a"
+                        android:background="@drawable/settings_chip_inactive" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/home_empty_bg"
+                    android:padding="14dp"
+                    android:layout_marginTop="14dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="DURATION"
+                            android:textColor="#625d5a"
+                            android:textSize="9sp"
+                            android:letterSpacing="0.1"
+                            android:textAllCaps="true" />
+
+                        <TextView
+                            android:id="@+id/tv_transition_desc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Animation takes 500ms"
+                            android:textColor="#e9e1dd"
+                            android:textSize="12sp"
+                            android:layout_marginTop="2dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/settings_chip_inactive"
+                        android:paddingStart="4dp"
+                        android:paddingEnd="4dp">
+
+                        <TextView
+                            android:id="@+id/btn_transition_minus"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:gravity="center"
+                            android:text="&#8722;"
+                            android:textColor="#988f88"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/tv_transition_val"
+                            android:layout_width="52dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="500ms"
+                            android:textColor="#e9e1dd"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/btn_transition_plus"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textColor="#988f88"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
             <!-- ── SECTION: System & Battery ── -->
             <LinearLayout
                 android:layout_width="match_parent"

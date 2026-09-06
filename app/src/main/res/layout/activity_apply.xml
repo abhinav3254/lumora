@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#161311"
+    android:fitsSystemWindows="true">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:background="#161311">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LUMORA"
+                android:textColor="#625d5a"
+                android:textSize="10sp"
+                android:letterSpacing="0.12"
+                android:textAllCaps="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Preview"
+                android:textColor="#e9e1dd"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Full content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp">
+
+        <!-- Phone mockup -->
+        <FrameLayout
+            android:layout_width="160dp"
+            android:layout_height="280dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/phone_frame_bg">
+
+            <!-- Screen -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:background="#0A0A0F"
+                android:layout_margin="10dp">
+
+                <!-- Notch -->
+                <View
+                    android:layout_width="48dp"
+                    android:layout_height="12dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/phone_notch_bg" />
+
+                <!-- Clock -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="09:41"
+                    android:textColor="#FFFFFF"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="-0.03" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Wednesday, Oct 24"
+                    android:textColor="#888888"
+                    android:textSize="9sp" />
+
+                <!-- Active badge -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/phone_badge_bg"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_marginTop="14dp">
+
+                    <View
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:background="@drawable/home_pulse_dot"
+                        android:layout_marginEnd="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lumora Active"
+                        android:textColor="#e9e1dd"
+                        android:textSize="9sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <!-- Transition label — updates as user taps chips -->
+        <TextView
+            android:id="@+id/tv_current_transition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="24dp"
+            android:text="FADE · 500ms"
+            android:textColor="#625d5a"
+            android:textSize="10sp"
+            android:letterSpacing="0.1"
+            android:textAllCaps="true" />
+
+        <!-- Inline chip row — tap to pick, label updates immediately -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/chip_none"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginEnd="6dp"
+                android:text="None"
+                android:textSize="12sp"
+                android:textColor="#625d5a"
+                android:background="@drawable/settings_chip_inactive" />
+
+            <TextView
+                android:id="@+id/chip_fade"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginEnd="6dp"
+                android:text="Fade"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:background="@drawable/settings_chip_active" />
+
+            <TextView
+                android:id="@+id/chip_slide"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginEnd="6dp"
+                android:text="Slide"
+                android:textSize="12sp"
+                android:textColor="#625d5a"
+                android:background="@drawable/settings_chip_inactive" />
+
+            <TextView
+                android:id="@+id/chip_zoom"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Zoom"
+                android:textSize="12sp"
+                android:textColor="#625d5a"
+                android:background="@drawable/settings_chip_inactive" />
+
+        </LinearLayout>
+
+        <!-- Duration row — compact, same screen -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/home_empty_bg"
+            android:padding="14dp"
+            android:layout_marginBottom="28dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Duration"
+                android:textColor="#988f88"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/btn_dur_minus"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:text="&#8722;"
+                android:textColor="#988f88"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_duration_val"
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="500ms"
+                android:textColor="#e9e1dd"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/btn_dur_plus"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:text="+"
+                android:textColor="#988f88"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <!-- Set as wallpaper CTA -->
+        <TextView
+            android:id="@+id/btn_apply_wallpaper"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:gravity="center"
+            android:text="SET AS LIVE WALLPAPER"
+            android:textColor="#33302d"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.08"
+            android:background="@drawable/splash_btn_primary_bg" />
+
+    </LinearLayout>
+
+    <!-- Bottom nav -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:orientation="horizontal"
+        android:background="@drawable/home_nav_bg"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:id="@+id/nav_wallpapers"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/wallpapers" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="WALLPAPERS" android:textColor="#625d5a" android:textSize="9sp" android:letterSpacing="0.08" android:textAllCaps="true" android:layout_marginTop="2dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nav_apply"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/greater" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="APPLY" android:textColor="#e9e1dd" android:textSize="9sp" android:letterSpacing="0.08" android:textAllCaps="true" android:layout_marginTop="2dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nav_settings"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/settings" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SETTINGS" android:textColor="#625d5a" android:textSize="9sp" android:letterSpacing="0.08" android:textAllCaps="true" android:layout_marginTop="2dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

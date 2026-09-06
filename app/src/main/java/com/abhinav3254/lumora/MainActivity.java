@@ -1,7 +1,5 @@
 package com.abhinav3254.lumora;
 
-import android.app.WallpaperManager;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,18 +17,16 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String KEY_INTERVAL_MS = "interval_ms";
 
-    private TextView tvPhotoCount, tvIntervalStatus;
+    private TextView   tvPhotoCount, tvIntervalStatus;
     private RecyclerView recyclerDeck;
-    private View emptyState;
-    private DeckAdapter deckAdapter;
+    private View         emptyState;
+    private DeckAdapter  deckAdapter;
     private final List<String> deckUris = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Apply saved theme immediately
         ThemeManager.apply(this);
 
         tvPhotoCount     = findViewById(R.id.tv_photo_count);
@@ -44,18 +40,13 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_settings).setOnClickListener(v ->
                 startActivity(new Intent(this, SettingsActivity.class)));
-
         findViewById(R.id.btn_add_more).setOnClickListener(v ->
                 startActivity(new Intent(this, WallpaperSettingsActivity.class)));
         findViewById(R.id.btn_import).setOnClickListener(v ->
                 startActivity(new Intent(this, WallpaperSettingsActivity.class)));
 
-        findViewById(R.id.nav_set_wallpaper).setOnClickListener(v -> {
-            Intent intent = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
-            intent.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
-                    new ComponentName(this, SlideshowWallpaperService.class));
-            startActivity(intent);
-        });
+        findViewById(R.id.nav_set_wallpaper).setOnClickListener(v ->
+                startActivity(new Intent(this, ApplyActivity.class)));
         findViewById(R.id.nav_settings).setOnClickListener(v ->
                 startActivity(new Intent(this, SettingsActivity.class)));
         findViewById(R.id.nav_wallpapers).setOnClickListener(v -> { });
@@ -64,11 +55,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Re-apply theme in case it changed while in Settings
         ThemeManager.apply(this);
         refreshDeck();
         refreshIntervalLabel();
     }
+
+
+    // ── Deck + interval ───────────────────────────────────────────────────────
 
     private void refreshDeck() {
         SharedPreferences prefs = getSharedPreferences(
@@ -99,9 +92,9 @@ public class MainActivity extends AppCompatActivity {
                 SlideshowWallpaperService.PREFS_NAME, MODE_PRIVATE);
         long ms = prefs.getLong(KEY_INTERVAL_MS, 5000);
         String label;
-        if (ms < 60000)      label = (ms / 1000) + "s";
+        if (ms < 60000)        label = (ms / 1000) + "s";
         else if (ms < 3600000) label = (ms / 60000) + "m";
-        else                 label = (ms / 3600000) + "h";
+        else                   label = (ms / 3600000) + "h";
         tvIntervalStatus.setText("· Every " + label);
     }
 }

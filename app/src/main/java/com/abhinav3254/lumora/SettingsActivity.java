@@ -18,6 +18,20 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String KEY_SHAKE_TO_CYCLE   = "shake_to_cycle";
     public static final String KEY_SHUFFLE          = "shuffle_mode";
 
+    // Transition
+    private static final String[] TRANSITION_TYPES  = {
+            SlideshowWallpaperService.TRANSITION_NONE,
+            SlideshowWallpaperService.TRANSITION_FADE,
+            SlideshowWallpaperService.TRANSITION_SLIDE,
+            SlideshowWallpaperService.TRANSITION_ZOOM
+    };
+    private static final int[] TRANSITION_CHIP_IDS = {
+            R.id.chip_transition_none,
+            R.id.chip_transition_fade,
+            R.id.chip_transition_slide,
+            R.id.chip_transition_zoom
+    };
+
     private static final long[]   INTERVAL_VALUES = {5000, 15000, 60000, 300000, 3600000};
     private static final String[] INTERVAL_LABELS = {"5s", "15s", "1m", "5m", "1h"};
 
@@ -28,6 +42,10 @@ public class SettingsActivity extends AppCompatActivity {
 
     private TextView tvCadenceLabel, tvStepperDesc, tvStepperVal, tvDeckInfo, tvSaveConfirm;
     private SwitchMaterial toggleLowBattery, toggleLowPowerMode, toggleShake, toggleShuffle;
+    private TextView[]     transitionChips;
+    private TextView       tvTransitionDesc, tvTransitionVal;
+    private int            transitionDurationMs = SlideshowWallpaperService.DEFAULT_TRANSITION_MS;
+    private String         selectedTransition   = SlideshowWallpaperService.TRANSITION_FADE;
 
     private long selectedInterval = 5000;
     private int  stepperSeconds   = 5;
@@ -43,6 +61,13 @@ public class SettingsActivity extends AppCompatActivity {
         tvDeckInfo     = findViewById(R.id.tv_deck_info);
         tvSaveConfirm  = findViewById(R.id.tv_save_confirm);
 
+        // Transition views
+        tvTransitionDesc = findViewById(R.id.tv_transition_desc);
+        tvTransitionVal  = findViewById(R.id.tv_transition_val);
+        transitionChips  = new TextView[TRANSITION_CHIP_IDS.length];
+        for (int i = 0; i < TRANSITION_CHIP_IDS.length; i++)
+            transitionChips[i] = findViewById(TRANSITION_CHIP_IDS[i]);
+
         toggleLowBattery   = findViewById(R.id.toggle_low_battery);
         toggleLowPowerMode = findViewById(R.id.toggle_low_power_mode);
         toggleShake        = findViewById(R.id.toggle_shake);
@@ -56,6 +81,13 @@ public class SettingsActivity extends AppCompatActivity {
 
         selectedInterval = prefs.getLong(MainActivity.KEY_INTERVAL_MS, 5000);
         stepperSeconds   = (int) Math.min(selectedInterval / 1000, 3600);
+
+        selectedTransition   = prefs.getString(SlideshowWallpaperService.KEY_TRANSITION,
+                SlideshowWallpaperService.TRANSITION_FADE);
+        transitionDurationMs = prefs.getInt(SlideshowWallpaperService.KEY_TRANSITION_DURATION,
+                SlideshowWallpaperService.DEFAULT_TRANSITION_MS);
+        updateTransitionChips();
+        updateTransitionDurationDisplay();
 
         toggleLowBattery.setChecked(prefs.getBoolean(KEY_PAUSE_LOW_BAT, true));
         toggleLowPowerMode.setChecked(prefs.getBoolean(KEY_PAUSE_LOW_POWER, true));
@@ -98,6 +130,29 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        // Transition chips
+        for (int i = 0; i < TRANSITION_CHIP_IDS.length; i++) {
+            final String type = TRANSITION_TYPES[i];
+            transitionChips[i].setOnClickListener(v -> {
+                selectedTransition = type;
+                updateTransitionChips();
+            });
+        }
+
+        // Transition duration stepper
+        findViewById(R.id.btn_transition_minus).setOnClickListener(v -> {
+            if (transitionDurationMs > 100) {
+                transitionDurationMs = Math.max(100, transitionDurationMs - 100);
+                updateTransitionDurationDisplay();
+            }
+        });
+        findViewById(R.id.btn_transition_plus).setOnClickListener(v -> {
+            if (transitionDurationMs < 2000) {
+                transitionDurationMs = Math.min(2000, transitionDurationMs + 100);
+                updateTransitionDurationDisplay();
+            }
+        });
+
         // Schedule screen
         findViewById(R.id.row_schedule).setOnClickListener(v ->
                 startActivity(new Intent(this, ScheduleActivity.class)));
@@ -130,6 +185,8 @@ public class SettingsActivity extends AppCompatActivity {
                     .putBoolean(KEY_PAUSE_LOW_POWER,  toggleLowPowerMode.isChecked())
                     .putBoolean(KEY_SHAKE_TO_CYCLE,   toggleShake.isChecked())
                     .putBoolean(KEY_SHUFFLE,           toggleShuffle.isChecked())
+                    .putString(SlideshowWallpaperService.KEY_TRANSITION, selectedTransition)
+                    .putInt(SlideshowWallpaperService.KEY_TRANSITION_DURATION, transitionDurationMs)
                     .apply();
             tvSaveConfirm.setVisibility(View.VISIBLE);
             tvSaveConfirm.postDelayed(() -> tvSaveConfirm.setVisibility(View.GONE), 2400);
@@ -162,6 +219,21 @@ public class SettingsActivity extends AppCompatActivity {
                 :                          (stepperSeconds / 3600) + "h";
         tvStepperVal.setText(val);
         tvStepperDesc.setText("Changes wallpaper every " + val);
+    }
+
+    private void updateTransitionChips() {
+        for (int i = 0; i < TRANSITION_TYPES.length; i++) {
+            boolean active = TRANSITION_TYPES[i].equals(selectedTransition);
+            transitionChips[i].setBackgroundResource(
+                    active ? R.drawable.settings_chip_active : R.drawable.settings_chip_inactive);
+            transitionChips[i].setTextColor(getColor(
+                    active ? R.color.chip_on_active : R.color.chip_muted));
+        }
+    }
+
+    private void updateTransitionDurationDisplay() {
+        tvTransitionVal.setText(transitionDurationMs + "ms");
+        tvTransitionDesc.setText("Animation takes " + transitionDurationMs + "ms");
     }
 
     private void refreshDeckInfo(SharedPreferences prefs) {
