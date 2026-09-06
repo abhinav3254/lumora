@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -48,8 +49,7 @@
                 android:text="Settings"
                 android:textColor="#e9e1dd"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:letterSpacing="-0.01" />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -59,6 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="#161311"
         android:overScrollMode="never">
 
         <LinearLayout
@@ -180,40 +181,9 @@
                     android:orientation="horizontal"
                     android:weightSum="3">
 
-                    <TextView
-                        android:id="@+id/chip_5s"
-                        android:layout_width="0dp"
-                        android:layout_height="42dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:layout_marginEnd="6dp"
-                        android:text="5 Sec"
-                        android:textSize="11sp"
-                        android:textStyle="bold"
-                        android:background="@drawable/settings_chip_active" />
-
-                    <TextView
-                        android:id="@+id/chip_15s"
-                        android:layout_width="0dp"
-                        android:layout_height="42dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:layout_marginEnd="6dp"
-                        android:text="15 Sec"
-                        android:textSize="11sp"
-                        android:textColor="#625d5a"
-                        android:background="@drawable/settings_chip_inactive" />
-
-                    <TextView
-                        android:id="@+id/chip_1m"
-                        android:layout_width="0dp"
-                        android:layout_height="42dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="1 Min"
-                        android:textSize="11sp"
-                        android:textColor="#625d5a"
-                        android:background="@drawable/settings_chip_inactive" />
+                    <TextView android:id="@+id/chip_5s" android:layout_width="0dp" android:layout_height="42dp" android:layout_weight="1" android:gravity="center" android:layout_marginEnd="6dp" android:text="5 Sec" android:textSize="11sp" android:textStyle="bold" android:background="@drawable/settings_chip_active" />
+                    <TextView android:id="@+id/chip_15s" android:layout_width="0dp" android:layout_height="42dp" android:layout_weight="1" android:gravity="center" android:layout_marginEnd="6dp" android:text="15 Sec" android:textSize="11sp" android:textColor="#625d5a" android:background="@drawable/settings_chip_inactive" />
+                    <TextView android:id="@+id/chip_1m" android:layout_width="0dp" android:layout_height="42dp" android:layout_weight="1" android:gravity="center" android:text="1 Min" android:textSize="11sp" android:textColor="#625d5a" android:background="@drawable/settings_chip_inactive" />
 
                 </LinearLayout>
 
@@ -224,34 +194,9 @@
                     android:layout_marginTop="8dp"
                     android:weightSum="3">
 
-                    <TextView
-                        android:id="@+id/chip_5m"
-                        android:layout_width="0dp"
-                        android:layout_height="42dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:layout_marginEnd="6dp"
-                        android:text="5 Min"
-                        android:textSize="11sp"
-                        android:textColor="#625d5a"
-                        android:background="@drawable/settings_chip_inactive" />
-
-                    <TextView
-                        android:id="@+id/chip_1h"
-                        android:layout_width="0dp"
-                        android:layout_height="42dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:layout_marginEnd="6dp"
-                        android:text="1 Hour"
-                        android:textSize="11sp"
-                        android:textColor="#625d5a"
-                        android:background="@drawable/settings_chip_inactive" />
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="42dp"
-                        android:layout_weight="1" />
+                    <TextView android:id="@+id/chip_5m" android:layout_width="0dp" android:layout_height="42dp" android:layout_weight="1" android:gravity="center" android:layout_marginEnd="6dp" android:text="5 Min" android:textSize="11sp" android:textColor="#625d5a" android:background="@drawable/settings_chip_inactive" />
+                    <TextView android:id="@+id/chip_1h" android:layout_width="0dp" android:layout_height="42dp" android:layout_weight="1" android:gravity="center" android:layout_marginEnd="6dp" android:text="1 Hour" android:textSize="11sp" android:textColor="#625d5a" android:background="@drawable/settings_chip_inactive" />
+                    <View android:layout_width="0dp" android:layout_height="42dp" android:layout_weight="1" />
 
                 </LinearLayout>
 
@@ -265,76 +210,22 @@
                     android:padding="14dp"
                     android:layout_marginTop="14dp">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="FINE TUNING"
-                            android:textColor="#625d5a"
-                            android:textSize="9sp"
-                            android:letterSpacing="0.1"
-                            android:textAllCaps="true" />
-
-                        <TextView
-                            android:id="@+id/tv_stepper_desc"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Changes wallpaper every 5 seconds"
-                            android:textColor="#e9e1dd"
-                            android:textSize="12sp"
-                            android:layout_marginTop="2dp" />
-
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="FINE TUNING" android:textColor="#625d5a" android:textSize="9sp" android:letterSpacing="0.1" android:textAllCaps="true" />
+                        <TextView android:id="@+id/tv_stepper_desc" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Changes wallpaper every 5 seconds" android:textColor="#e9e1dd" android:textSize="12sp" android:layout_marginTop="2dp" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/settings_chip_inactive"
-                        android:paddingStart="4dp"
-                        android:paddingEnd="4dp">
-
-                        <TextView
-                            android:id="@+id/btn_minus"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
-                            android:gravity="center"
-                            android:text="−"
-                            android:textColor="#988f88"
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:id="@+id/tv_stepper_val"
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="5s"
-                            android:textColor="#e9e1dd"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/btn_plus"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
-                            android:gravity="center"
-                            android:text="+"
-                            android:textColor="#988f88"
-                            android:textSize="20sp" />
-
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:background="@drawable/settings_chip_inactive" android:paddingStart="4dp" android:paddingEnd="4dp">
+                        <TextView android:id="@+id/btn_minus" android:layout_width="36dp" android:layout_height="36dp" android:gravity="center" android:text="−" android:textColor="#988f88" android:textSize="20sp" />
+                        <TextView android:id="@+id/tv_stepper_val" android:layout_width="40dp" android:layout_height="wrap_content" android:gravity="center" android:text="5s" android:textColor="#e9e1dd" android:textSize="14sp" android:textStyle="bold" />
+                        <TextView android:id="@+id/btn_plus" android:layout_width="36dp" android:layout_height="36dp" android:gravity="center" android:text="+" android:textColor="#988f88" android:textSize="20sp" />
                     </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
 
-            <!-- ── SECTION: Theme ── -->
+            <!-- ── SECTION: System & Battery ── -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -346,7 +237,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="App Theme"
+                    android:text="System &amp; Battery"
                     android:textColor="#e9e1dd"
                     android:textSize="17sp"
                     android:textStyle="bold" />
@@ -354,7 +245,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="APPEARANCE"
+                    android:text="OPTIMIZATION"
                     android:textColor="#625d5a"
                     android:textSize="10sp"
                     android:letterSpacing="0.1"
@@ -367,374 +258,170 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@drawable/home_card_bg"
-                android:padding="16dp"
                 android:layout_marginBottom="28dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Select a color palette for the app UI"
-                    android:textColor="#625d5a"
-                    android:textSize="12sp"
-                    android:layout_marginBottom="14dp" />
+                <!-- Toggle row helper macro — repeated 4 times -->
 
-                <!-- Theme swatches row 1 -->
+                <!-- Row 1: Pause on Low Battery -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="10dp">
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingTop="18dp"
+                    android:paddingBottom="18dp">
 
-                    <!-- Stone (default) -->
-                    <LinearLayout
-                        android:id="@+id/theme_stone"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_marginEnd="8dp">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="64dp"
-                            android:background="@drawable/theme_swatch_stone">
-
-                            <!-- Inner palette strip -->
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal">
-
-                                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#161311"/>
-                                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#221f1d"/>
-                                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#ccc5c1"/>
-
-                            </LinearLayout>
-
-                            <View
-                                android:id="@+id/theme_stone_check"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_gravity="top|end"
-                                android:layout_margin="6dp"
-                                android:background="@drawable/theme_check_bg"
-                                android:visibility="visible" />
-
-                        </FrameLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:text="Stone"
-                            android:textColor="#e9e1dd"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Default"
-                            android:textColor="#625d5a"
-                            android:textSize="10sp" />
-
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:paddingEnd="16dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pause on Low Battery" android:textColor="#e9e1dd" android:textSize="15sp" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="Halts cycle automatically when power is under 20%" android:textColor="#625d5a" android:textSize="12sp" android:lineSpacingMultiplier="1.4" />
                     </LinearLayout>
 
-                    <!-- Slate -->
-                    <LinearLayout
-                        android:id="@+id/theme_slate"
-                        android:layout_width="0dp"
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/toggle_low_battery"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_marginEnd="8dp">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="64dp"
-                            android:background="@drawable/theme_swatch_slate">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal">
-
-                                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#0d1117"/>
-                                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#161b22"/>
-                                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#58a6ff"/>
-
-                            </LinearLayout>
-
-                            <View
-                                android:id="@+id/theme_slate_check"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_gravity="top|end"
-                                android:layout_margin="6dp"
-                                android:background="@drawable/theme_check_bg"
-                                android:visibility="gone" />
-
-                        </FrameLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:text="Slate"
-                            android:textColor="#e9e1dd"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Deep blue"
-                            android:textColor="#625d5a"
-                            android:textSize="10sp" />
-
-                    </LinearLayout>
-
-                    <!-- Forest -->
-                    <LinearLayout
-                        android:id="@+id/theme_forest"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:gravity="center">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="64dp"
-                            android:background="@drawable/theme_swatch_forest">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal">
-
-                                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#0d1a0f"/>
-                                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#1a2e1c"/>
-                                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#4caf50"/>
-
-                            </LinearLayout>
-
-                            <View
-                                android:id="@+id/theme_forest_check"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_gravity="top|end"
-                                android:layout_margin="6dp"
-                                android:background="@drawable/theme_check_bg"
-                                android:visibility="gone" />
-
-                        </FrameLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:text="Forest"
-                            android:textColor="#e9e1dd"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Dark green"
-                            android:textColor="#625d5a"
-                            android:textSize="10sp" />
-
-                    </LinearLayout>
+                        android:checked="true"
+                        android:showText="false"
+                        app:track="@drawable/toggle_track_bg" />
 
                 </LinearLayout>
 
-                <!-- Theme swatches row 2 -->
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1e1b19" android:layout_marginStart="20dp" android:layout_marginEnd="20dp" />
+
+                <!-- Row 2: Pause on Low Power Mode -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingTop="18dp"
+                    android:paddingBottom="18dp">
 
-                    <!-- Ash -->
-                    <LinearLayout
-                        android:id="@+id/theme_ash"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_marginEnd="8dp">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="64dp"
-                            android:background="@drawable/theme_swatch_ash">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal">
-
-                                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#111111"/>
-                                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#1c1c1c"/>
-                                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#e0e0e0"/>
-
-                            </LinearLayout>
-
-                            <View
-                                android:id="@+id/theme_ash_check"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_gravity="top|end"
-                                android:layout_margin="6dp"
-                                android:background="@drawable/theme_check_bg"
-                                android:visibility="gone" />
-
-                        </FrameLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:text="Ash"
-                            android:textColor="#e9e1dd"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Pure dark"
-                            android:textColor="#625d5a"
-                            android:textSize="10sp" />
-
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:paddingEnd="16dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pause during Low Power Mode" android:textColor="#e9e1dd" android:textSize="15sp" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="Respects system-wide performance safeguards" android:textColor="#625d5a" android:textSize="12sp" android:lineSpacingMultiplier="1.4" />
                     </LinearLayout>
 
-                    <!-- Dusk -->
-                    <LinearLayout
-                        android:id="@+id/theme_dusk"
-                        android:layout_width="0dp"
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/toggle_low_power_mode"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_marginEnd="8dp">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="64dp"
-                            android:background="@drawable/theme_swatch_dusk">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal">
-
-                                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#1a0a2e"/>
-                                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#2d1b4e"/>
-                                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#b39ddb"/>
-
-                            </LinearLayout>
-
-                            <View
-                                android:id="@+id/theme_dusk_check"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_gravity="top|end"
-                                android:layout_margin="6dp"
-                                android:background="@drawable/theme_check_bg"
-                                android:visibility="gone" />
-
-                        </FrameLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:text="Dusk"
-                            android:textColor="#e9e1dd"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Deep violet"
-                            android:textColor="#625d5a"
-                            android:textSize="10sp" />
-
-                    </LinearLayout>
-
-                    <!-- Ember -->
-                    <LinearLayout
-                        android:id="@+id/theme_ember"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:gravity="center">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="64dp"
-                            android:background="@drawable/theme_swatch_ember">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal">
-
-                                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#1a0800"/>
-                                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#2e1200"/>
-                                <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#ff6d00"/>
-
-                            </LinearLayout>
-
-                            <View
-                                android:id="@+id/theme_ember_check"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_gravity="top|end"
-                                android:layout_margin="6dp"
-                                android:background="@drawable/theme_check_bg"
-                                android:visibility="gone" />
-
-                        </FrameLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:text="Ember"
-                            android:textColor="#e9e1dd"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Warm orange"
-                            android:textColor="#625d5a"
-                            android:textSize="10sp" />
-
-                    </LinearLayout>
+                        android:checked="true"
+                        android:showText="false"
+                        app:track="@drawable/toggle_track_bg" />
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tv_theme_note"
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1e1b19" android:layout_marginStart="20dp" android:layout_marginEnd="20dp" />
+
+                <!-- Row 3: Shake to Cycle -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:text="Theme applies on next app launch"
-                    android:textColor="#4c4640"
-                    android:textSize="11sp"
-                    android:gravity="center"
-                    android:letterSpacing="0.04"
-                    android:visibility="gone" />
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingTop="18dp"
+                    android:paddingBottom="18dp">
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:paddingEnd="16dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Shake to Cycle Immediately" android:textColor="#e9e1dd" android:textSize="15sp" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="Uses motion sensors to force next wallpaper in stack" android:textColor="#625d5a" android:textSize="12sp" android:lineSpacingMultiplier="1.4" />
+                    </LinearLayout>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/toggle_shake"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:showText="false"
+                        app:track="@drawable/toggle_track_bg" />
+
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1e1b19" android:layout_marginStart="20dp" android:layout_marginEnd="20dp" />
+
+                <!-- Row 4: Shuffle -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingTop="18dp"
+                    android:paddingBottom="18dp">
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:paddingEnd="16dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Shuffle Order" android:textColor="#e9e1dd" android:textSize="15sp" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="Play photos in random order instead of sequence" android:textColor="#625d5a" android:textSize="12sp" android:lineSpacingMultiplier="1.4" />
+                    </LinearLayout>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/toggle_shuffle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:showText="false"
+                        app:track="@drawable/toggle_track_bg" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- ── SECTION: Features ── -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Features"
+                    android:textColor="#e9e1dd"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/home_card_bg"
+                android:layout_marginBottom="28dp">
+
+                <!-- Schedule row -->
+                <LinearLayout
+                    android:id="@+id/row_schedule"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
+
+                    <FrameLayout android:layout_width="36dp" android:layout_height="36dp" android:background="@drawable/home_empty_bg" android:layout_marginEnd="14dp">
+                        <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="S" android:textColor="#625d5a" android:textSize="14sp" android:textStyle="bold" />
+                    </FrameLayout>
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Photo Schedule" android:textColor="#e9e1dd" android:textSize="14sp" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Show different photos by time of day" android:textColor="#625d5a" android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#625d5a" android:textSize="22sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -773,137 +460,28 @@
                 android:background="@drawable/home_card_bg"
                 android:layout_marginBottom="28dp">
 
-                <LinearLayout
-                    android:id="@+id/row_clear_deck"
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <FrameLayout
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:background="@drawable/home_empty_bg"
-                        android:layout_marginEnd="14dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="[]"
-                            android:textColor="#625d5a"
-                            android:textSize="12sp" />
-
+                <LinearLayout android:id="@+id/row_clear_deck" android:layout_width="match_parent" android:layout_height="64dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="20dp">
+                    <FrameLayout android:layout_width="36dp" android:layout_height="36dp" android:background="@drawable/home_empty_bg" android:layout_marginEnd="14dp">
+                        <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="[]" android:textColor="#625d5a" android:textSize="12sp" />
                     </FrameLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Active Deck"
-                            android:textColor="#e9e1dd"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv_deck_info"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0 wallpapers ready"
-                            android:textColor="#625d5a"
-                            android:textSize="12sp" />
-
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Active Deck" android:textColor="#e9e1dd" android:textSize="14sp" android:textStyle="bold" />
+                        <TextView android:id="@+id/tv_deck_info" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0 wallpapers ready" android:textColor="#625d5a" android:textSize="12sp" />
                     </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Clear"
-                        android:textColor="#ffb4ab"
-                        android:textSize="11sp"
-                        android:letterSpacing="0.06"
-                        android:textAllCaps="true"
-                        android:background="@drawable/settings_clear_btn_bg"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp"
-                        android:paddingTop="6dp"
-                        android:paddingBottom="6dp" />
-
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Clear" android:textColor="#ffb4ab" android:textSize="11sp" android:letterSpacing="0.06" android:textAllCaps="true" android:background="@drawable/settings_clear_btn_bg" android:paddingStart="12dp" android:paddingEnd="12dp" android:paddingTop="6dp" android:paddingBottom="6dp" />
                 </LinearLayout>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp"
-                    android:background="#1e1b19" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1e1b19" android:layout_marginStart="20dp" android:layout_marginEnd="20dp" />
 
-                <LinearLayout
-                    android:id="@+id/row_reset_splash"
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <FrameLayout
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:background="@drawable/home_empty_bg"
-                        android:layout_marginEnd="14dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="i"
-                            android:textColor="#625d5a"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
+                <LinearLayout android:id="@+id/row_reset_splash" android:layout_width="match_parent" android:layout_height="64dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="20dp">
+                    <FrameLayout android:layout_width="36dp" android:layout_height="36dp" android:background="@drawable/home_empty_bg" android:layout_marginEnd="14dp">
+                        <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="i" android:textColor="#625d5a" android:textSize="14sp" android:textStyle="bold" />
                     </FrameLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Show intro again"
-                            android:textColor="#e9e1dd"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Reset onboarding screen"
-                            android:textColor="#625d5a"
-                            android:textSize="12sp" />
-
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Show intro again" android:textColor="#e9e1dd" android:textSize="14sp" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Reset onboarding screen" android:textColor="#625d5a" android:textSize="12sp" />
                     </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Reset"
-                        android:textColor="#988f88"
-                        android:textSize="11sp"
-                        android:letterSpacing="0.06"
-                        android:textAllCaps="true"
-                        android:background="@drawable/settings_reset_btn_bg"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp"
-                        android:paddingTop="6dp"
-                        android:paddingBottom="6dp" />
-
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Reset" android:textColor="#988f88" android:textSize="11sp" android:letterSpacing="0.06" android:textAllCaps="true" android:background="@drawable/settings_reset_btn_bg" android:paddingStart="12dp" android:paddingEnd="12dp" android:paddingTop="6dp" android:paddingBottom="6dp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -916,23 +494,8 @@
                 android:gravity="center_vertical"
                 android:layout_marginBottom="10dp">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="About"
-                    android:textColor="#e9e1dd"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="APP"
-                    android:textColor="#625d5a"
-                    android:textSize="10sp"
-                    android:letterSpacing="0.1"
-                    android:textAllCaps="true" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="About" android:textColor="#e9e1dd" android:textSize="17sp" android:textStyle="bold" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="APP" android:textColor="#625d5a" android:textSize="10sp" android:letterSpacing="0.1" android:textAllCaps="true" />
 
             </LinearLayout>
 
@@ -943,300 +506,38 @@
                 android:background="@drawable/home_card_bg"
                 android:layout_marginBottom="28dp">
 
-                <!-- Version row -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <FrameLayout
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:background="@drawable/home_empty_bg"
-                        android:layout_marginEnd="14dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="v"
-                            android:textColor="#625d5a"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                    </FrameLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Version"
-                            android:textColor="#e9e1dd"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Lumora v1.0.0"
-                            android:textColor="#625d5a"
-                            android:textSize="12sp" />
-
+                <LinearLayout android:layout_width="match_parent" android:layout_height="64dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="20dp">
+                    <FrameLayout android:layout_width="36dp" android:layout_height="36dp" android:background="@drawable/home_empty_bg" android:layout_marginEnd="14dp"><TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="v" android:textColor="#625d5a" android:textSize="14sp" android:textStyle="bold"/></FrameLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Version" android:textColor="#e9e1dd" android:textSize="14sp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Lumora v1.0.0" android:textColor="#625d5a" android:textSize="12sp"/>
                     </LinearLayout>
-
                 </LinearLayout>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp"
-                    android:background="#1e1b19" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1e1b19" android:layout_marginStart="20dp" android:layout_marginEnd="20dp"/>
 
-                <!-- Developer row -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <FrameLayout
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:background="@drawable/home_empty_bg"
-                        android:layout_marginEnd="14dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="A"
-                            android:textColor="#625d5a"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                    </FrameLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Developer"
-                            android:textColor="#e9e1dd"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Abhinav · abhinav3254"
-                            android:textColor="#625d5a"
-                            android:textSize="12sp" />
-
+                <LinearLayout android:layout_width="match_parent" android:layout_height="64dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="20dp">
+                    <FrameLayout android:layout_width="36dp" android:layout_height="36dp" android:background="@drawable/home_empty_bg" android:layout_marginEnd="14dp"><TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="A" android:textColor="#625d5a" android:textSize="14sp" android:textStyle="bold"/></FrameLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Developer" android:textColor="#e9e1dd" android:textSize="14sp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Abhinav · abhinav3254" android:textColor="#625d5a" android:textSize="12sp"/>
                     </LinearLayout>
-
                 </LinearLayout>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp"
-                    android:background="#1e1b19" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1e1b19" android:layout_marginStart="20dp" android:layout_marginEnd="20dp"/>
 
-                <!-- Privacy row -->
-                <LinearLayout
-                    android:id="@+id/row_privacy"
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <FrameLayout
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:background="@drawable/home_empty_bg"
-                        android:layout_marginEnd="14dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="P"
-                            android:textColor="#625d5a"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                    </FrameLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Privacy Policy"
-                            android:textColor="#e9e1dd"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="All data stays on your device"
-                            android:textColor="#625d5a"
-                            android:textSize="12sp" />
-
+                <LinearLayout android:id="@+id/row_share" android:layout_width="match_parent" android:layout_height="64dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="20dp">
+                    <FrameLayout android:layout_width="36dp" android:layout_height="36dp" android:background="@drawable/home_empty_bg" android:layout_marginEnd="14dp"><TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="&lt;" android:textColor="#625d5a" android:textSize="14sp" android:textStyle="bold"/></FrameLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Share Lumora" android:textColor="#e9e1dd" android:textSize="14sp" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tell a friend about the app" android:textColor="#625d5a" android:textSize="12sp"/>
                     </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="›"
-                        android:textColor="#625d5a"
-                        android:textSize="20sp" />
-
-                </LinearLayout>
-
-                <View android:layout_width="match_parent" android:layout_height="1dp"
-                    android:background="#1e1b19" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"/>
-
-                <!-- Rate row -->
-                <LinearLayout
-                    android:id="@+id/row_rate"
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <FrameLayout
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:background="@drawable/home_empty_bg"
-                        android:layout_marginEnd="14dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="*"
-                            android:textColor="#625d5a"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                    </FrameLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rate on Play Store"
-                            android:textColor="#e9e1dd"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Enjoying Lumora? Leave a review"
-                            android:textColor="#625d5a"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="›"
-                        android:textColor="#625d5a"
-                        android:textSize="20sp" />
-
-                </LinearLayout>
-
-                <View android:layout_width="match_parent" android:layout_height="1dp"
-                    android:background="#1e1b19" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"/>
-
-                <!-- Share row -->
-                <LinearLayout
-                    android:id="@+id/row_share"
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <FrameLayout
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:background="@drawable/home_empty_bg"
-                        android:layout_marginEnd="14dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="&lt;"
-                            android:textColor="#625d5a"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                    </FrameLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Share Lumora"
-                            android:textColor="#e9e1dd"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Tell a friend about the app"
-                            android:textColor="#625d5a"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="›"
-                        android:textColor="#625d5a"
-                        android:textSize="20sp" />
-
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="#625d5a" android:textSize="22sp"/>
                 </LinearLayout>
 
             </LinearLayout>
 
-            <!-- Save button -->
+            <!-- Save -->
             <TextView
                 android:id="@+id/btn_save"
                 android:layout_width="match_parent"
@@ -1262,7 +563,6 @@
                 android:layout_marginTop="10dp"
                 android:visibility="gone" />
 
-            <!-- App footer -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

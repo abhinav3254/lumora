@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#161311"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:tag="bg_base">
 
     <!-- Fixed Header -->
     <LinearLayout
@@ -15,7 +16,8 @@
         android:gravity="center_vertical"
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
-        android:background="#161311">
+        android:background="#161311"
+        android:tag="bg_base">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -69,7 +71,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:overScrollMode="never">
+        android:overScrollMode="never"
+        android:background="#161311"
+        android:tag="bg_base">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -87,7 +91,8 @@
                 android:background="@drawable/home_card_bg"
                 android:padding="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                android:tag="bg_card">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -131,6 +136,7 @@
                     android:layout_marginTop="6dp"
                     android:text="No photos selected"
                     android:textColor="#988f88"
+                    android:tag="text_muted"
                     android:textSize="13sp" />
 
             </LinearLayout>
@@ -150,6 +156,7 @@
                     android:text="Active Deck"
                     android:textColor="#e9e1dd"
                     android:textSize="17sp"
+                    android:tag="text_primary"
                     android:textStyle="bold" />
 
                 <TextView
@@ -205,7 +212,8 @@
                 android:orientation="vertical"
                 android:background="@drawable/home_card_bg"
                 android:padding="16dp"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:tag="bg_card">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -241,6 +249,7 @@
                             android:layout_height="wrap_content"
                             android:text="Select new photos"
                             android:textColor="#e9e1dd"
+                            android:tag="text_primary"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
@@ -250,6 +259,7 @@
                             android:layout_marginTop="3dp"
                             android:text="Import up to 20 images to assemble a new automated cycle collection."
                             android:textColor="#625d5a"
+                            android:tag="text_muted"
                             android:textSize="12sp"
                             android:lineSpacingMultiplier="1.4" />
 
@@ -282,6 +292,7 @@
         android:layout_height="64dp"
         android:orientation="horizontal"
         android:background="@drawable/home_nav_bg"
+        android:tag="bg_nav"
         android:weightSum="3">
 
         <LinearLayout

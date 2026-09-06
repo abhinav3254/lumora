@@ -14,13 +14,19 @@ import android.view.SurfaceHolder;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class SlideshowWallpaperService extends WallpaperService {
 
-    public static final String PREFS_NAME = "LumoraPrefs";
+    public static final String PREFS_NAME    = "LumoraPrefs";
     public static final String KEY_IMAGE_URIS = "image_uris";
-    public static final String URI_SEPARATOR = "|||";
+    public static final String URI_SEPARATOR  = "|||";
+
+    // Keys read by the engine
+    public static final String KEY_SHUFFLE       = "shuffle_mode";
+    public static final String KEY_STAT_CYCLED   = "stat_total_cycled";
 
     @Override
     public Engine onCreateEngine() {
@@ -29,22 +35,26 @@ public class SlideshowWallpaperService extends WallpaperService {
 
     private class SlideshowEngine extends Engine {
 
-        private final Handler handler = new Handler(Looper.getMainLooper());
-        private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-        private final List<String> imageUriStrings = new ArrayList<>();
+        private final Handler      handler    = new Handler(Looper.getMainLooper());
+        private final Paint        paint      = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+        private final List<String> uriList    = new ArrayList<>();
+        private final Random       rng        = new Random();
 
-        private Bitmap currentBitmap = null;
-        private int currentIndex = 0;
-        private boolean visible = false;
-        private int surfaceW = 0, surfaceH = 0;
+        private Bitmap  currentBitmap = null;
+        private int     currentIndex  = 0;
+        private boolean visible       = false;
+        private int     surfaceW      = 0;
+        private int     surfaceH      = 0;
 
+        // ── Runnable ────────────────────────────────────────────────────────
         private final Runnable slideshowRunnable = new Runnable() {
             @Override
             public void run() {
-                if (!imageUriStrings.isEmpty()) {
-                    currentIndex = (currentIndex + 1) % imageUriStrings.size();
+                if (!uriList.isEmpty()) {
+                    advance();
                     loadBitmapAt(currentIndex);
                     drawFrame();
+                    incrementStat();
                 }
                 if (visible) {
                     handler.postDelayed(this, getIntervalMs());
@@ -52,19 +62,45 @@ public class SlideshowWallpaperService extends WallpaperService {
             }
         };
 
-        private long getIntervalMs() {
-            SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-            return prefs.getLong(MainActivity.KEY_INTERVAL_MS, 5000);
+        // ── Helpers ─────────────────────────────────────────────────────────
+        private SharedPreferences prefs() {
+            return getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         }
 
+        private long getIntervalMs() {
+            return prefs().getLong(MainActivity.KEY_INTERVAL_MS, 5000);
+        }
+
+        private boolean isShuffleOn() {
+            return prefs().getBoolean(KEY_SHUFFLE, false);
+        }
+
+        /** Move to next index — sequential or random */
+        private void advance() {
+            if (uriList.size() <= 1) { currentIndex = 0; return; }
+            if (isShuffleOn()) {
+                // Pick any index except the current one
+                int next;
+                do { next = rng.nextInt(uriList.size()); } while (next == currentIndex);
+                currentIndex = next;
+            } else {
+                currentIndex = (currentIndex + 1) % uriList.size();
+            }
+        }
+
+        /** Increment the all-time cycle counter for the Stats screen */
+        private void incrementStat() {
+            long count = prefs().getLong(KEY_STAT_CYCLED, 0);
+            prefs().edit().putLong(KEY_STAT_CYCLED, count + 1).apply();
+        }
+
+        // ── Lifecycle ────────────────────────────────────────────────────────
         @Override
         public void onVisibilityChanged(boolean visible) {
             this.visible = visible;
             if (visible) {
                 loadUrisFromPrefs();
-                if (!imageUriStrings.isEmpty()) {
-                    loadBitmapAt(currentIndex);
-                }
+                if (!uriList.isEmpty()) loadBitmapAt(currentIndex);
                 drawFrame();
                 handler.removeCallbacks(slideshowRunnable);
                 handler.postDelayed(slideshowRunnable, getIntervalMs());
@@ -79,9 +115,7 @@ public class SlideshowWallpaperService extends WallpaperService {
             surfaceW = width;
             surfaceH = height;
             loadUrisFromPrefs();
-            if (!imageUriStrings.isEmpty()) {
-                loadBitmapAt(currentIndex);
-            }
+            if (!uriList.isEmpty()) loadBitmapAt(currentIndex);
             drawFrame();
         }
 
@@ -100,31 +134,24 @@ public class SlideshowWallpaperService extends WallpaperService {
             recycleBitmap();
         }
 
-        private void recycleBitmap() {
-            if (currentBitmap != null && !currentBitmap.isRecycled()) {
-                currentBitmap.recycle();
-                currentBitmap = null;
-            }
-        }
-
+        // ── URI loading ──────────────────────────────────────────────────────
         private void loadUrisFromPrefs() {
-            SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-            String raw = prefs.getString(KEY_IMAGE_URIS, "");
-            imageUriStrings.clear();
+            String raw = prefs().getString(KEY_IMAGE_URIS, "");
+            uriList.clear();
             if (raw != null && !raw.isEmpty()) {
                 for (String p : raw.split("\\|\\|\\|")) {
-                    if (!p.trim().isEmpty()) imageUriStrings.add(p.trim());
+                    if (!p.trim().isEmpty()) uriList.add(p.trim());
                 }
             }
-            if (currentIndex >= imageUriStrings.size()) currentIndex = 0;
+            if (currentIndex >= uriList.size()) currentIndex = 0;
         }
 
+        // ── Bitmap loading ───────────────────────────────────────────────────
         private void loadBitmapAt(int index) {
-            if (imageUriStrings.isEmpty() || surfaceW == 0 || surfaceH == 0) return;
+            if (uriList.isEmpty() || surfaceW == 0 || surfaceH == 0) return;
             try {
-                Uri uri = Uri.parse(imageUriStrings.get(index));
+                Uri uri = Uri.parse(uriList.get(index));
 
-                // Pass 1: get dimensions
                 BitmapFactory.Options opts = new BitmapFactory.Options();
                 opts.inJustDecodeBounds = true;
                 InputStream is = getContentResolver().openInputStream(uri);
@@ -132,11 +159,10 @@ public class SlideshowWallpaperService extends WallpaperService {
                 BitmapFactory.decodeStream(is, null, opts);
                 is.close();
 
-                opts.inSampleSize = calculateInSampleSize(opts, surfaceW, surfaceH);
+                opts.inSampleSize     = calculateInSampleSize(opts, surfaceW, surfaceH);
                 opts.inJustDecodeBounds = false;
-                opts.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                opts.inPreferredConfig  = Bitmap.Config.ARGB_8888;
 
-                // Pass 2: decode
                 is = getContentResolver().openInputStream(uri);
                 if (is == null) return;
                 Bitmap raw = BitmapFactory.decodeStream(is, null, opts);
@@ -166,9 +192,9 @@ public class SlideshowWallpaperService extends WallpaperService {
                 scaledH = (int) (targetW / srcRatio);
             }
             Bitmap scaled = Bitmap.createScaledBitmap(src, scaledW, scaledH, true);
-            int x = Math.max(0, (scaledW - targetW) / 2);
-            int y = Math.max(0, (scaledH - targetH) / 2);
-            int cropW = Math.min(targetW, scaled.getWidth() - x);
+            int x     = Math.max(0, (scaledW - targetW) / 2);
+            int y     = Math.max(0, (scaledH - targetH) / 2);
+            int cropW = Math.min(targetW, scaled.getWidth()  - x);
             int cropH = Math.min(targetH, scaled.getHeight() - y);
             Bitmap cropped = Bitmap.createBitmap(scaled, x, y, cropW, cropH);
             if (cropped != scaled) scaled.recycle();
@@ -184,6 +210,14 @@ public class SlideshowWallpaperService extends WallpaperService {
             return s;
         }
 
+        private void recycleBitmap() {
+            if (currentBitmap != null && !currentBitmap.isRecycled()) {
+                currentBitmap.recycle();
+                currentBitmap = null;
+            }
+        }
+
+        // ── Drawing ──────────────────────────────────────────────────────────
         private void drawFrame() {
             SurfaceHolder holder = getSurfaceHolder();
             Canvas canvas = null;
